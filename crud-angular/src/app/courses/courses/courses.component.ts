@@ -1,25 +1,43 @@
-import { CoursesService } from './../services/courses.service';
+import { CoursesService } from '../services/courses.service';
 import { Component, OnInit } from '@angular/core';
-
 import { Course } from '../model/course';
+import {Observable, of} from 'rxjs';
+import {MatDialog} from "@angular/material/dialog";
+import {ErrorDialogComponent} from "../../shared/components/error-dialog/error-dialog.component";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.scss'],
+  styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-  courses: Course[] = [{ _id: '1', name: 'Angular', category: 'front-end' }];
 
-  displayedColumns = ['name', 'category'];
+  courses$: Observable<Course[]>;
+  // courses: Course[] = [];
+  displayedColumns = ['name','category'];
 
-  //coursesService: CoursesService;
+  // coursesService: CoursesService;
 
-  constructor(private coursesService: CoursesService) {
+  constructor(public dialog: MatDialog, private coursesService: CoursesService) {
+    // this.courses = [];
     // this.coursesService = new CoursesService();
+    this.courses$ = this.coursesService.list().pipe(error => {
+      this.onError('Erro ao Carregar cursos.');
+      return of([])
+    });
+
+    // this.coursesService.list().subscribe(courses => this.courses = courses);
+  }
+
+  onError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMsg
+    });
   }
 
   ngOnInit(): void {
-    this.courses = this.coursesService.list();
+
   }
+
 }
