@@ -3,9 +3,7 @@ package com.alex.controller;
 import com.alex.model.Course;
 import com.alex.repository.CourseRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,4 +18,9 @@ public class CourseController {
     public List<Course> list(){
         return courseRepository.findAll();
     }
+
+//    @PostMapping
+//    public Course save(@RequestBody Course course){
+//        return courseRepository.save(course);
+//    }
 }
