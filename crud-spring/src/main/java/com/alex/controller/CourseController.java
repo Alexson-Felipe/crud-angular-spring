@@ -21,6 +21,13 @@ public class CourseController {
         return courseRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Course> findById(@PathVariable Long id) {
+        return courseRepository.findById(id)
+                .map(course -> ResponseEntity.ok().body(course))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     //    @RequestMapping(method = RequestMethod.POST)
 //    @PostMapping
 //    public ResponseEntity<Course> create(@RequestBody Course course) {
@@ -32,6 +39,14 @@ public class CourseController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public Course create(@RequestBody Course course) {
-         return courseRepository.save(course);
+        return courseRepository.save(course);
+    }
+
+    @PutMapping
+    public Course edit(@RequestBody Course course) {
+        var findCourseEdit = courseRepository.findById(course.getId()).orElse(null);
+
+//        findCourseEdit.
+        return null;
     }
 }
