@@ -1,9 +1,10 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CoursesService } from '../../services/courses.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+
+import { CoursesService } from '../../services/courses.service';
 
 @Component({
   selector: 'app-course-form',
@@ -18,7 +19,6 @@ export class CourseFormComponent implements OnInit {
 
   constructor(
     private formBuilder: NonNullableFormBuilder,
-    private router: Router,
     private courseService: CoursesService,
     private snackBar: MatSnackBar,
     private location: Location
@@ -26,6 +26,7 @@ export class CourseFormComponent implements OnInit {
     this.form.value.name = 'null';
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {}
 
   onSubmit() {

@@ -38,6 +38,18 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {}
 
   public onAdd() {
-    this.router.navigate(['new'], { relativeTo: this.route }).then();
+    this.router
+      .navigate(['new'], {
+        relativeTo: this.route,
+      })
+      .then();
+  }
+
+  public onEdit(course: Course) {
+    this.router
+      .navigate(['edit', course._id], {
+        relativeTo: this.route,
+      })
+      .then();
   }
 }
