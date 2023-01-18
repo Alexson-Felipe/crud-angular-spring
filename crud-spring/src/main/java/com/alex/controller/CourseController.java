@@ -42,11 +42,14 @@ public class CourseController {
         return courseRepository.save(course);
     }
 
-//    @PutMapping
-//    @ResponseStatus
-//    public Course edit(@RequestBody Course course) {
-//        System.out.println(course);
-//        var findCourseEdit = courseRepository.findById(course.getId()).orElse(create(course));
-//        return courseRepository.save(findCourseEdit);
-//    }
+    @PutMapping("/{id}")
+    @ResponseStatus
+    public ResponseEntity<Course> update(@PathVariable Long id, @RequestBody Course course) {
+        return courseRepository.findById(id).map(cursoEncontrado -> {
+            cursoEncontrado.setName(course.getName());
+            cursoEncontrado.setCategory(course.getCategory());
+            Course updated = courseRepository.save(cursoEncontrado);
+            return ResponseEntity.ok().body(updated);
+        }).orElse(ResponseEntity.notFound().build());
+    }
 }
