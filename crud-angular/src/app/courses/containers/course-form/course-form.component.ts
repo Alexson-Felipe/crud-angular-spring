@@ -29,7 +29,7 @@ export class CourseFormComponent implements OnInit {
     this.form.value.name = 'null';
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+
   ngOnInit(): void {
     const course: Course = this.route.snapshot.data['course'];
     this.form.setValue({ _id: course._id, name: course.name, category: course.category });

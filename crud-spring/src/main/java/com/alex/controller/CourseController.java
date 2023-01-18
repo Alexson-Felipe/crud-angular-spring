@@ -42,11 +42,11 @@ public class CourseController {
         return courseRepository.save(course);
     }
 
-    @PutMapping
-    public Course edit(@RequestBody Course course) {
-        var findCourseEdit = courseRepository.findById(course.getId()).orElse(null);
-
-//        findCourseEdit.
-        return null;
-    }
+//    @PutMapping
+//    @ResponseStatus
+//    public Course edit(@RequestBody Course course) {
+//        System.out.println(course);
+//        var findCourseEdit = courseRepository.findById(course.getId()).orElse(create(course));
+//        return courseRepository.save(findCourseEdit);
+//    }
 }
