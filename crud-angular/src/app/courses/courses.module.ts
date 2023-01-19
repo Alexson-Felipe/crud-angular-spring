@@ -7,7 +7,6 @@ import { CoursesComponent } from './containers/courses/courses.component';
 import { SharedModule } from '../shared/shared.module';
 import { CourseFormComponent } from './containers/course-form/course-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 
 @NgModule({
