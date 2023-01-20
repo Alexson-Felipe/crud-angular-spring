@@ -6,7 +6,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { error } from '@angular/compiler-cli/src/transformers/util';
 import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
