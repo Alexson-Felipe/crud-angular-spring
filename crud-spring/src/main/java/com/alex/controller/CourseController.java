@@ -5,10 +5,15 @@ import com.alex.repository.CourseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/api/courses")
 @AllArgsConstructor
@@ -22,7 +27,7 @@ public class CourseController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Course> findById(@PathVariable Long id) {
+    public ResponseEntity<Course> findById(@PathVariable @NotNull @Positive Long id) {
         return courseRepository.findById(id)
                 .map(course -> ResponseEntity.ok().body(course))
                 .orElse(ResponseEntity.notFound().build());
@@ -38,13 +43,13 @@ public class CourseController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Course create(@RequestBody Course course) {
+    public Course create(@RequestBody @Valid Course course) {
         return courseRepository.save(course);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus
-    public ResponseEntity<Course> update(@PathVariable Long id, @RequestBody Course course) {
+    public ResponseEntity<Course> update(@PathVariable Long id, @RequestBody @Valid @NotNull @Positive  Course course) {
         return courseRepository.findById(id).map(cursoEncontrado -> {
             cursoEncontrado.setName(course.getName());
             cursoEncontrado.setCategory(course.getCategory());
@@ -54,7 +59,7 @@ public class CourseController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> remove(@PathVariable Long id) {
+    public ResponseEntity<Void> remove(@PathVariable @NotNull @Positive Long id) {
         return courseRepository.findById(id).map(course -> {
             courseRepository.deleteById(id);
             return ResponseEntity.noContent().<Void>build();
