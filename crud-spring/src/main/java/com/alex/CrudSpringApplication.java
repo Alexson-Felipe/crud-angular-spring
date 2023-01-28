@@ -19,7 +19,7 @@ public class CrudSpringApplication {
     CommandLineRunner initDataBase(CourseRepository courseRepository) {
         return args -> {
             courseRepository.deleteAll();
-            var curso = Course.builder().name("Angular").category("Front-end").build();
+            var curso = Course.builder().name("Angular").category("Front-end").status("Ativo").build();
 
             courseRepository.save(curso);
         };

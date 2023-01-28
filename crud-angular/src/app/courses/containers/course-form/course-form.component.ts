@@ -5,8 +5,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CoursesService } from '../../services/courses.service';
-import { Course } from '../../model/course';
-import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-course-form',
