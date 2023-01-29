@@ -3,8 +3,6 @@ mat-card {
   max-width: 80%;
   margin: 2em auto;
   text-align: center;
-
-
 }
 
 mat-card-content {
@@ -20,8 +18,7 @@ mat-card-content {
   min-width: 150px;
 }
 
-mat-card-actions {
-  display: flex;
+.actions-center {
   justify-content: center;
   gap: 5px;
 }
